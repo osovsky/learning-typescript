@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Расчёт дней</title>
+  <style>
+    body { font-family: sans-serif; padding: 32px; background:#f7f8fb; }
+    form { display:flex; gap:8px; align-items:center; }
+    input[type="date"] { padding:8px; border-radius:8px; border:1px solid #ddd; }
+    button { padding:8px 12px; border-radius:8px; border:none; background:#2563eb; color:white; cursor:pointer; }
+    .result { margin-top:20px; font-size:28px; font-weight:700; padding:18px;
+      border-radius:12px; display:inline-block; background:linear-gradient(90deg,#fff,#f1f5f9);
+      box-shadow:0 6px 18px rgba(37,99,235,0.12); border:1px solid rgba(37,99,235,0.14); }
+    .highlight { color:#1e3a8a; }
+    .error { color:#b91c1c; font-weight:600; }
+  </style>
+</head>
+<body>
+  <h1>Сколько дней прошло или осталось до выбранной даты?</h1>
+
+  <form id="dateForm">
+    <input id="date" name="date" type="date" required />
+    <button type="submit">Посчитать</button>
+  </form>
+
+  <div id="output"></div>
+
+  <script>
+    document.getElementById('dateForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const date = document.getElementById('date').value;
+      const out = document.getElementById('output');
+      out.innerHTML = 'Считаем...';
+
+      try {
+        const res = await fetch('/api/days', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ date })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Ошибка');
+
+        const days = Math.abs(data.days);
+        const text = data.days >= 0 ? 'Прошло' : 'Осталось';
+        const word =
+          days === 1
+            ? 'день'
+            : (days % 10 >= 2 && days % 10 <= 4 && (days % 100 < 10 || days % 100 >= 20)
+                ? 'дня'
+                : 'дней');
+
+        out.innerHTML = `<div class="result">${text} <span class="highlight">${days}</span> ${word}</div>`;
+      } catch (err) {
+        out.innerHTML = `<div class="result error">Ошибка: ${err.message}</div>`;
+      }
+
+    });
+  </script>
+</body>
+</html>
