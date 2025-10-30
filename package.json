@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "build": "esbuild src/days-app.ts --bundle --minify --outfile=public/js/days-app.js"
+    },
+    "devDependencies": {
+        "esbuild": "^0.25.11"
+    }
+}
