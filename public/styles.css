@@ -297,3 +297,50 @@ header {
   text-decoration: underline; /* Подчеркивание при наведении */
 }
 
+.converter-box {
+  background: #fff;
+  padding: 20px;
+  /* margin: 40px auto; */
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  text-align: center;
+}
+.converter-box h2 {
+  margin-bottom: 20px;
+}
+.converter-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+.converter-box button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #0073e6;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.converter-box button:hover {
+  background: #005bb5;
+}
+.result-box {
+  margin-top: 20px;
+  background: #f1f1f1;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+}
+.small {
+  color: #555;
+  font-size: 14px;
+  margin-top: 10px;
+}
