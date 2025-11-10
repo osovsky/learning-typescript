@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Конвертер валют — EUR, USD, UAH</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .converter-box {
+      background: #fff;
+      padding: 20px;
+      margin: 40px auto;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      text-align: center;
+    }
+    .converter-box h2 {
+      margin-bottom: 20px;
+    }
+    .converter-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .converter-box button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background: #0073e6;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .converter-box button:hover {
+      background: #005bb5;
+    }
+    .result-box {
+      margin-top: 20px;
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 18px;
+    }
+    .small {
+      color: #555;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="images/logo.jpg" alt="Logo" class="logo">
+    </div>
+    <h1 style="margin-left: 10px;">Конвертер валют (EUR, USD, UAH)</h1>
+  </header>
+
+  <div class="main-content">
+    <div class="converter-box">
+      <h2>Розрахунок у євро</h2>
+      <label>Скільки у вас USD:</label>
+      <input id="usd" type="number" placeholder="0" step="0.01">
+      <label>Скільки у вас EUR:</label>
+      <input id="eur" type="number" placeholder="0" step="0.01">
+      <label>Скільки у вас UAH:</label>
+      <input id="uah" type="number" placeholder="0" step="0.01">
+
+      <button id="calcBtn">Розрахувати</button>
+
+      <div class="result-box" id="result">Введіть суми і натисніть «Розрахувати»</div>
+      <div class="small" id="ratesInfo"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Currency Converter. Дані з офіційних джерел (PrivatBank/Monobank/NBU)</p>
+  </footer>
+
+  <script>
+    const usdIn = document.getElementById('usd');
+    const eurIn = document.getElementById('eur');
+    const uahIn = document.getElementById('uah');
+    const btn = document.getElementById('calcBtn');
+    const resultEl = document.getElementById('result');
+    const ratesInfo = document.getElementById('ratesInfo');
+
+    async function computeServer() {
+      const params = new URLSearchParams({
+        usd: usdIn.value || '0',
+        eur: eurIn.value || '0',
+        uah: uahIn.value || '0'
+      });
+
+      resultEl.textContent = '⏳ Розрахунок...';
+      try {
+        const resp = await fetch(`/api/convert?${params.toString()}`);
+        if (!resp.ok) throw new Error('Server error ' + resp.status);
+        const data = await resp.json();
+
+        if (data.result) {
+          const r = data.result.breakdown;
+          resultEl.innerHTML = `
+            <strong>Разом: ${data.result.eur_total.toFixed(2)} €</strong><br>
+            <small>EUR: ${r.eur_self.toFixed(2)}, з USD → EUR: ${r.eur_from_usd.toFixed(2)}, з UAH → EUR: ${r.eur_from_uah.toFixed(2)}</small>
+          `;
+          ratesInfo.textContent = `${data.source} · ${new Date(data.fetchedAt).toLocaleString()} · USD_buy=${data.usedRates.USD_buy} · EUR_sale=${data.usedRates.EUR_sale}`;
+        } else {
+          resultEl.textContent = 'Помилка при отриманні даних';
+        }
+      } catch (e) {
+        console.error(e);
+        resultEl.textContent = '❌ Не вдалося отримати результат';
+      }
+    }
+
+    btn.addEventListener('click', computeServer);
+  </script>
+</body>
+</html>
