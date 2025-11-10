@@ -1,7 +1,6 @@
-// api/convert.ts
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import fetch from 'node-fetch';
-import ratesHandler from './rates';
+const fetch = require('node-fetch');
+const ratesHandler = require('./rates');
 
 type Rate = { buy: number; sale: number };
 type RatesResp = {
@@ -13,7 +12,7 @@ type RatesResp = {
   };
 };
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async (req: VercelRequest, res: VercelResponse) => {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
     return res.status(405).json({ error: 'Method Not Allowed' });
@@ -24,12 +23,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const uah = parseFloat(String(req.query.uah ?? '0'));
 
   try {
-    // 🟢 Вместо fetch('/api/rates') вызываем напрямую ratesHandler:
+    // Вызов обработчика курсов напрямую
     const fakeRes: any = {
       statusCode: 200,
       jsonData: null,
       status(code: number) { this.statusCode = code; return this; },
-      json(data: any) { this.jsonData = data; return this; }
+      json(data: any) { this.jsonData = data; return this; },
     };
     await ratesHandler(req, fakeRes);
     const data: RatesResp = fakeRes.jsonData;
@@ -51,7 +50,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const total = eur + eur_from_usd + eur_from_uah;
 
-    return res.status(200).json({
+    res.status(200).json({
       source: data.source,
       fetchedAt: data.fetchedAt,
       usedRates: {
@@ -72,4 +71,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error('Convert error:', err);
     res.status(502).json({ error: 'Conversion failed', details: String(err) });
   }
-}
+};
