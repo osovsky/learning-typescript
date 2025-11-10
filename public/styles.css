@@ -254,7 +254,7 @@ footer .social-icon.youtube:hover {
 }
 
 header {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   padding: 10px;
   background-color: #333; /* Цвет фона, можно изменить */
