@@ -4,5 +4,10 @@
     },
     "devDependencies": {
         "esbuild": "^0.25.11"
+    },
+    "type": "module",
+    "dependencies": {
+      "@vercel/node": "^3.0.0",
+      "node-fetch": "^3.3.2"
     }
 }

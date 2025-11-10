@@ -1,16 +1,15 @@
 // api/rates.ts
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-// CommonJS импорт вместо ES
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 type Rate = { buy: number; sale: number };
 
-module.exports = async (req: VercelRequest, res: VercelResponse) => {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     let data: any[] = [];
     let source = '';
 
-    // 1️⃣ PrivatBank
+    // --- 1️⃣ Пробуем PrivatBank ---
     try {
       const r = await fetch('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
       if (r.ok) {
@@ -19,7 +18,7 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
       }
     } catch {}
 
-    // 2️⃣ Monobank
+    // --- 2️⃣ Если не удалось — пробуем Monobank ---
     if (!data.length) {
       try {
         const r2 = await fetch('https://api.monobank.ua/bank/currency');
@@ -38,7 +37,7 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
       } catch {}
     }
 
-    // 3️⃣ НБУ fallback
+    // --- 3️⃣ Если и это не сработало — fallback на НБУ ---
     if (!data.length) {
       try {
         const r3 = await fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
@@ -57,6 +56,7 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
       } catch {}
     }
 
+    // --- Формируем ответ ---
     if (!data.length) throw new Error('All sources failed');
 
     const rates: Record<string, Rate> = {};
@@ -73,4 +73,4 @@ module.exports = async (req: VercelRequest, res: VercelResponse) => {
   } catch (err: any) {
     res.status(502).json({ error: 'Failed to fetch rates', details: String(err) });
   }
-};
+}
