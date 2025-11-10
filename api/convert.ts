@@ -1,7 +1,7 @@
 // api/convert.ts
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import fetch from 'node-fetch';
-import ratesHandler from './rates';
+import ratesHandler from './rates.js';
 
 type Rate = { buy: number; sale: number };
 type RatesResp = {
