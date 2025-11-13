@@ -1,19 +1,61 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Калькулятор дней</title>
-  <link rel="stylesheet" href="/css/days-app.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Days Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+ 
 </head>
 <body>
-  <h1>Сколько дней прошло или осталось до выбранной даты?</h1>
-  <form id="dateForm">
-    <input id="date" name="date" type="date" required />
-    <button type="submit">Посчитать</button>
-  </form>
+  <header>
+    <div class="logo-container">
+      <a href="https://www.youtube.com/SergOMusic" target="_blank">
+        <img src="./images/logo.jpg" alt="Logo" class="logo">
+      </a>
+    </div>
+  </header>
 
-  <div id="output"></div>
+  <div class="container">
+    <div class="sidebar-left">
+      <nav>
+        <p><a href="/">Home</a></p>
+        <p><a href="songs">Songs</a></p>
+        <p><a href="ambient">Ambient</a></p>
+        <p><a href="about">Über mich</a></p>
+        <p><a href="convert">Currency Converter</a></p>
+        <p><a href="days-calculator">Days Calculator</a></p>
+      </nav>
+    </div>
+
+    <div class="main-content">
+      <div class="calc-section">
+        <h1>Wie viele Tage sind vergangen oder verbleiben bis zum ausgewählten Datum?</h1>
+        <form id="dateForm">
+          <input id="date" name="date" type="date" required />
+          <button type="submit">Berechnen</button>
+        </form>
+
+        <div id="output"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Musik Serg Osovskyi</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/sergii.osovskyi/" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/sergosovskyi/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@serhiiosovskyi" target="_blank" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/SergOMusic" target="_blank" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+      <a href="mailto:sergoguitarmusic@gmail.com" target="_blank" class="social-icon email"><i class="fas fa-envelope"></i></a>
+    </div>
+  </footer>
 
   <script type="module" src="/js/days-app.js"></script>
 </body>

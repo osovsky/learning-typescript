@@ -344,3 +344,51 @@ header {
   font-size: 14px;
   margin-top: 10px;
 }
+
+  /* Стили для калькулятора под стиль сайта */
+.calc-section {
+  background: #fff;
+  padding: 20px;
+  /* margin: 40px auto; */
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  /* text-align: center; */
+}
+.calc-section h1 {
+  margin-bottom: 20px;
+}
+.calc-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* max-width: 300px; */
+  margin-top: 20px;
+}
+
+.calc-section input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.calc-section button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.calc-section button:hover {
+  background: #005bb5;
+}
+
+#output {
+  margin-top: 15px;
+  font-size: 1.1rem;
+}
