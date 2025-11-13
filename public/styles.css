@@ -58,6 +58,50 @@ header, footer {
   padding: 10px;
 }
 
+/* ОБНОВЛЕНИЕ: header теперь flex-контейнер для размещения кнопки */
+header {
+  display: flex; 
+  justify-content: space-between; /* Лого слева, кнопка справа */
+  align-items: center;
+  padding: 10px 20px; /* Добавляем горизонтальный отступ */
+  background-color: #333;
+  color: white;
+}
+
+/* ДОБАВЛЕНО: Стили для кнопки гамбургера (скрыто на десктопе) */
+.hamburger-icon {
+    display: none; /* Скрываем по умолчанию */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 25px;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 1000; 
+}
+
+.bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out; /* Плавный переход для анимации "X" */
+}
+
+/* ДОБАВЛЕНО: Стили для анимации иконки в "X" (при открытом меню) */
+.hamburger-icon.open .bar:nth-child(2) {
+    opacity: 0; 
+}
+.hamburger-icon.open .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg); 
+}
+.hamburger-icon.open .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg); 
+}
+
 .container {
   flex-grow: 1; 
   display: flex;
@@ -68,12 +112,30 @@ header, footer {
   overflow-x: hidden; /* Убираем горизонтальный скролл */
 }
 
-/* Left Sidebar */
+/* Left Sidebar - ДЕСКТОПНЫЕ СТИЛИ */
 .sidebar-left {
   background-color: #f4f4f4;
   padding: 15px;
   width: 15%;
   box-sizing: border-box;
+  /* ОБНОВЛЕНО: Сброс мобильных стилей для десктопа */
+  position: static;
+  transform: none; 
+  transition: none; 
+  height: auto;
+}
+
+/* ДОБАВЛЕНО: Стили для ссылок внутри сайдбара */
+.sidebar-left nav p a {
+    padding: 10px 15px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.sidebar-left nav p a:hover {
+    background-color: #e0e0e0;
 }
 
 /* Main Content */
@@ -156,13 +218,49 @@ header, footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    
+    /* ДОБАВЛЕНО/ОБНОВЛЕНО: Показываем гамбургер-иконку */
+    .hamburger-icon {
+        display: flex; 
+    }
+
+    /* ОБНОВЛЕНО: Настраиваем левый сайдбар как скользящее меню */
+    .sidebar-left {
+        width: 80%; /* Занимает 80% ширины экрана */
+        height: calc(100vh - 70px); /* Полная высота экрана минус высота шапки */
+        position: fixed; /* Фиксируем на экране */
+        top: 70px; /* Начинается под шапкой (проверьте высоту вашей шапки) */
+        left: 0;
+        padding: 0; /* Убираем padding, чтобы не мешал сдвигу */
+        
+        /* Скрываем меню за левым краем: НАЧАЛЬНОЕ СОСТОЯНИЕ */
+        transform: translateX(-100%); 
+        
+        /* ГЛАВНОЕ: Плавный переход для сдвига */
+        transition: transform 0.3s ease-in-out;
+        
+        z-index: 900;
+        overflow-y: auto; /* Для скролла, если меню длинное */
+        box-shadow: 2px 0 5px rgba(0,0,0,0.5); 
+        
+        /* Настраиваем внутреннее содержимое меню */
+        padding: 15px;
+    }
+    
+    /* ДОБАВЛЕНО: Открытое состояние меню (класс добавляется JS) */
+    .sidebar-left.open {
+        transform: translateX(0); /* Сдвигаем в видимую область */
+    }
+    
+    /* СУЩЕСТВУЮЩИЕ СТИЛИ (ОБНОВЛЕНО) */
   .container {
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
+    gap: 0;
   }
   
-  .sidebar-left, .sidebar-right {
+  .sidebar-right {
     width: 100%;
     padding: 10px;
   }
@@ -253,12 +351,7 @@ footer .social-icon.youtube:hover {
   background-color: #ff0000;
 }
 
-header {
-  /* display: flex; */
-  align-items: center;
-  padding: 10px;
-  background-color: #333; /* Цвет фона, можно изменить */
-}
+/* header (Уже обновлен выше) */
 
 .logo-container {
   width: 50px; /* Диаметр круга */

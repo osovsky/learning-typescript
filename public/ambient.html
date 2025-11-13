@@ -18,10 +18,15 @@
         <img src="./images/logo.jpg" alt="Logo" class="logo">
       </a>
     </div>
+    <button id="hamburger-btn" class="hamburger-icon" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
   </header>
 
   <div class="container">
-    <div class="sidebar-left">
+    <div class="sidebar-left" id="mobile-nav"> 
       <nav>
         <p><a href="/">Home</a></p>
         <p><a href="songs">Songs</a></p>
@@ -123,5 +128,36 @@
       <a href="mailto:sergoguitarmusic@gmail.com" target="_blank" class="social-icon email"><i class="fas fa-envelope"></i></a>
     </div>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        if (hamburgerBtn && mobileNav) {
+            hamburgerBtn.addEventListener('click', () => {
+                const isExpanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
+                
+                // Переключает класс 'open' для анимации сдвига меню и иконки
+                hamburgerBtn.classList.toggle('open');
+                mobileNav.classList.toggle('open');
+                
+                // Обновляет ARIA-атрибуты для доступности
+                hamburgerBtn.setAttribute('aria-expanded', !isExpanded);
+            });
+            
+            // Опционально: Закрытие меню при клике на любую ссылку в нем
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Используем setTimeout, чтобы позволить ссылке сработать до закрытия
+                    setTimeout(() => {
+                        hamburgerBtn.classList.remove('open');
+                        mobileNav.classList.remove('open');
+                        hamburgerBtn.setAttribute('aria-expanded', 'false');
+                    }, 50); 
+                });
+            });
+        }
+    });
+</script>
 </body>
 </html>
