@@ -297,10 +297,10 @@ header {
   text-decoration: underline; /* Подчеркивание при наведении */
 }
 
+/* Стили для конвертера под стиль сайта */
 .converter-box {
   background: #fff;
-  padding: 20px;
-  /* margin: 40px auto; */
+  padding: 25px; /* увеличил немного */
   max-width: 500px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   border-radius: 12px;
@@ -313,9 +313,9 @@ header {
   width: 100%;
   padding: 10px;
   margin: 8px 0;
-  font-size: 16px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  box-sizing: border-box; /* важно, чтобы padding не ломал ширину */
 }
 .converter-box button {
   width: 100%;

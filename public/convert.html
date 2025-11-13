@@ -5,37 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Конвертер валют — EUR, USD, UAH</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- <style>
-
-  </style> -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
 </head>
+
 <body>
   <header>
-    <!-- <div class="logo-container">
-      <img src="images/logo.jpg" alt="Logo" class="logo">
-    </div> -->
-    <h1 align="center">Конвертер валют (EUR, USD, UAH)</h1>
+    <div class="logo-container">
+      <a href="https://www.youtube.com/SergOMusic" target="_blank">
+        <img src="./images/logo.jpg" alt="Logo" class="logo" />
+      </a>
+    </div>
   </header>
 
-  <div class="main-content">
-    <div class="converter-box">
-      <h2>Розрахунок у євро</h2>
-      <label>Скільки у вас USD:</label>
-      <input id="usd" type="number" placeholder="0" step="0.01">
-      <label>Скільки у вас EUR:</label>
-      <input id="eur" type="number" placeholder="0" step="0.01">
-      <label>Скільки у вас UAH:</label>
-      <input id="uah" type="number" placeholder="0" step="0.01">
+  <div class="container">
+    <!-- Левая навигация -->
+    <div class="sidebar-left">
+      <nav>
+        <p><a href="/">Home</a></p>
+        <p><a href="songs">Songs</a></p>
+        <p><a href="ambient">Ambient</a></p>
+        <p><a href="about">Über mich</a></p>
+        <p><a href="convert">Currency Converter</a></p>
+        <p><a href="days-app">Days Calculator</a></p>
+      </nav>
+    </div>
 
-      <button id="calcBtn">Розрахувати</button>
+    <!-- Основной контент -->
+    <div class="main-content">
+      <div class="converter-box">
+        <h2>Конвертер валют (EUR, USD, UAH)</h2>
 
-      <div class="result-box" id="result">Введіть суми і натисніть «Розрахувати»</div>
-      <div class="small" id="ratesInfo"></div>
+        <label for="usd">Скільки у вас USD:</label>
+        <input id="usd" type="number" placeholder="0" step="0.01" min="0"/>
+
+        <label for="eur">Скільки у вас EUR:</label>
+        <input id="eur" type="number" placeholder="0" step="0.01" min="0"/>
+
+        <label for="uah">Скільки у вас UAH:</label>
+        <input id="uah" type="number" placeholder="0" step="0.01" min="0"/>
+
+        <button id="calcBtn">Розрахувати</button>
+
+        <div class="result-box" id="result">Введіть суми і натисніть «Розрахувати»</div>
+        <div class="small" id="ratesInfo"></div>
+      </div>
     </div>
   </div>
 
   <footer>
     <p>© 2025 Musik Serg Osovskyi. Дані з офіційних джерел (PrivatBank/Monobank/NBU)</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/sergii.osovskyi/" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/sergosovskyi/" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@serhiiosovskyi" target="_blank" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/SergOMusic" target="_blank" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+      <a href="mailto:sergoguitarmusic@gmail.com" target="_blank" class="social-icon email"><i class="fas fa-envelope"></i></a>
+    </div>
   </footer>
 
   <script>
