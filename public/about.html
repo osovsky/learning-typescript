@@ -28,6 +28,8 @@
   <div class="container">
     <div class="sidebar-left" id="mobile-nav"> 
       <nav>
+        <p class="close-menu-container"><a href="#" id="menu-close-btn" class="menu-close-btn">
+          <i class="fas fa-arrow-left"></i>Close</a></p>
         <p><a href="/">Home</a></p>
         <p><a href="songs">Songs</a></p>
         <p><a href="ambient">Ambient</a></p>
@@ -60,28 +62,41 @@
     document.addEventListener('DOMContentLoaded', () => {
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const mobileNav = document.getElementById('mobile-nav');
+        // НОВЫЙ ЭЛЕМЕНТ: Кнопка "Закрыть" внутри меню
+        const menuCloseBtn = document.getElementById('menu-close-btn');
+
+        // Функция для закрытия меню
+        const closeMenu = () => {
+            hamburgerBtn.classList.remove('open');
+            mobileNav.classList.remove('open');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        };
+
+        // Функция для открытия/закрытия меню по иконке
+        const toggleMenu = () => {
+            const isExpanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
+            hamburgerBtn.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+            hamburgerBtn.setAttribute('aria-expanded', !isExpanded);
+        };
 
         if (hamburgerBtn && mobileNav) {
-            hamburgerBtn.addEventListener('click', () => {
-                const isExpanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
-                
-                // Переключает класс 'open' для анимации сдвига меню и иконки
-                hamburgerBtn.classList.toggle('open');
-                mobileNav.classList.toggle('open');
-                
-                // Обновляет ARIA-атрибуты для доступности
-                hamburgerBtn.setAttribute('aria-expanded', !isExpanded);
-            });
+            // 1. Обработка клика по гамбургер-иконке
+            hamburgerBtn.addEventListener('click', toggleMenu);
             
-            // Опционально: Закрытие меню при клике на любую ссылку в нем
-            mobileNav.querySelectorAll('a').forEach(link => {
+            // 2. ОБРАБОТКА КЛИКА ПО КНОПКЕ "ЗАКРЫТЬ" ВНУТРИ МЕНЮ
+            if (menuCloseBtn) {
+                menuCloseBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); // Предотвращаем переход по ссылке '#'
+                    closeMenu();
+                });
+            }
+
+            // 3. Закрытие меню при клике на обычную ссылку
+            mobileNav.querySelectorAll('a:not(.menu-close-btn)').forEach(link => {
                 link.addEventListener('click', () => {
                     // Используем setTimeout, чтобы позволить ссылке сработать до закрытия
-                    setTimeout(() => {
-                        hamburgerBtn.classList.remove('open');
-                        mobileNav.classList.remove('open');
-                        hamburgerBtn.setAttribute('aria-expanded', 'false');
-                    }, 50); 
+                    setTimeout(closeMenu, 50); 
                 });
             });
         }

@@ -19,9 +19,9 @@ p {
 
 /* Общие стили для текста */
 .about-section {
-  text-align: left; /* Текст выровнен по левому краю */
-  margin: 0 auto; /* Центрирование секции, если задана ширина */
-  max-width: 800px; /* Опционально: ограничение ширины для читабельности */
+  text-align: left; /* Текст выровнен по левому краю */ 
+  margin: 0 auto; /* Центрирование секции, если задана ширина */ 
+  max-width: 800px; /* Опционально: ограничение ширины для читабельности */ 
   padding: 20px;
   line-height: 1.8;
 }
@@ -30,7 +30,7 @@ p {
 .about-section h1 {
   font-size: 2em;
   margin-bottom: 20px;
-  text-align: left; /* Заголовок тоже выровнен по левому краю */
+  text-align: left; /* Заголовок тоже выровнен по левому краю */ 
 }
 
 /* Стиль параграфов */
@@ -41,12 +41,12 @@ p {
 
 /* Видео остаётся по центру */
 .video-section {
-  text-align: center; /* Центрирование плеера */
-  margin: 20px 0; /* Отступы сверху и снизу */
+  text-align: center; /* Центрирование плеера */ 
+  margin: 20px 0; /* Отступы сверху и снизу */ 
 }
 
 .video-section iframe {
-  max-width: 100%; /* Респонсивный плеер */
+  max-width: 100%; /* Респонсивный плеер */ 
   height: auto;
 }
 
@@ -61,16 +61,16 @@ header, footer {
 /* ОБНОВЛЕНИЕ: header теперь flex-контейнер для размещения кнопки */
 header {
   display: flex; 
-  justify-content: space-between; /* Лого слева, кнопка справа */
+  justify-content: space-between; /* Лого слева, кнопка справа */ 
   align-items: center;
-  padding: 10px 20px; /* Добавляем горизонтальный отступ */
+  padding: 10px 20px; /* Добавляем горизонтальный отступ */ 
   background-color: #333;
   color: white;
 }
 
 /* ДОБАВЛЕНО: Стили для кнопки гамбургера (скрыто на десктопе) */
 .hamburger-icon {
-    display: none; /* Скрываем по умолчанию */
+    display: none; /* Скрываем по умолчанию */ 
     background: none;
     border: none;
     cursor: pointer;
@@ -88,7 +88,7 @@ header {
     height: 3px;
     background-color: white;
     border-radius: 5px;
-    transition: all 0.3s ease-in-out; /* Плавный переход для анимации "X" */
+    transition: all 0.3s ease-in-out; /* Плавный переход для анимации "X" */ 
 }
 
 /* ДОБАВЛЕНО: Стили для анимации иконки в "X" (при открытом меню) */
@@ -109,7 +109,7 @@ header {
   background-color: #f9f9f9;
   justify-content: space-between;
   gap: 10px;
-  overflow-x: hidden; /* Убираем горизонтальный скролл */
+  overflow-x: hidden; /* Убираем горизонтальный скролл */ 
 }
 
 /* Left Sidebar - ДЕСКТОПНЫЕ СТИЛИ */
@@ -137,6 +137,14 @@ header {
 .sidebar-left nav p a:hover {
     background-color: #e0e0e0;
 }
+
+/* ========================================================== */
+/* ИСПРАВЛЕНИЕ: Скрываем контейнер кнопки закрытия на десктопе! */
+.close-menu-container {
+    display: none; 
+}
+/* ========================================================== */
+
 
 /* Main Content */
 .main-content {
@@ -175,50 +183,90 @@ header {
 
 .recommendation {
   display: flex;
-  align-items: flex-start; /* Выравниваем по верхнему краю */
-  gap: 15px; /* Расстояние между картинкой и текстом */
-  margin-bottom: 20px; /* Отступ между блоками */
+  align-items: flex-start; /* Выравниваем по верхнему краю */ 
+  gap: 15px; /* Расстояние между картинкой и текстом */ 
+  margin-bottom: 20px; /* Отступ между блоками */ 
 }
 
 .recommendation .video-thumbnail img {
-  width: 240px; /* Уменьшенный размер ширины */
-  height: 135px; /* Уменьшенный размер высоты (16:9) */
-  object-fit: cover; /* Миниатюра без искажений */
-  border-radius: 5px; /* Скруглённые углы (опционально) */
-  transition: transform 0.3s ease; /* Эффект увеличения */
+  width: 240px; /* Уменьшенный размер ширины */ 
+  height: 135px; /* Уменьшенный размер высоты (16:9) */ 
+  object-fit: cover; /* Миниатюра без искажений */ 
+  border-radius: 5px; /* Скруглённые углы (опционально) */ 
+  transition: transform 0.3s ease; /* Эффект увеличения */ 
 }
 
 .recommendation .video-thumbnail img:hover {
-  transform: scale(1.05); /* Лёгкое увеличение при наведении */
+  transform: scale(1.05); /* Лёгкое увеличение при наведении */ 
 }
 
 .video-description {
-  flex: 1; /* Описание занимает оставшееся место */
+  flex: 1; /* Описание занимает оставшееся место */ 
 }
 
 .video-title {
-  font-size: 16px; /* Размер заголовка */
-  font-weight: bold; /* Полужирный текст */
-  color: #0073e6; /* Цвет ссылки */
-  text-decoration: none; /* Убираем подчёркивание */
-  display: block; /* Заголовок занимает всю строку */
-  margin-bottom: 5px; /* Отступ под заголовком */
+  font-size: 16px; /* Размер заголовка */ 
+  font-weight: bold; /* Полужирный текст */ 
+  color: #0073e6; /* Цвет ссылки */ 
+  text-decoration: none; /* Убираем подчёркивание */ 
+  display: block; /* Заголовок занимает всю строку */ 
+  margin-bottom: 5px; /* Отступ под заголовком */ 
 }
 
 .video-title:hover {
-  text-decoration: underline; /* Подчёркивание при наведении */
+  text-decoration: underline; /* Подчёркивание при наведении */ 
 }
 
 .video-description p {
-  font-size: 14px; /* Размер текста описания */
-  color: #444; /* Цвет текста */
-  line-height: 1.4; /* Интерлиньяж */
-  margin: 0; /* Убираем отступы */
+  font-size: 14px; /* Размер текста описания */ 
+  color: #444; /* Цвет текста */ 
+  line-height: 1.4; /* Интерлиньяж */ 
+  margin: 0; /* Убираем отступы */ 
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    
+  .about-section h1 {
+    /* Уменьшаем размер шрифта (например, до 1.5em) */
+    font-size: 1.5em; 
+    /* Уменьшаем нижний отступ (margin-bottom) */
+    margin-bottom: 10px; 
+}
+
+/* Уменьшаем общий padding секции на маленьких экранах */
+.about-section {
+    padding: 10px; 
+}
+
+    /* ДОБАВЛЕНО: Стили для кнопки "Закрыть" внутри меню (видно только здесь!) */
+    .close-menu-container {
+        /* ИСПРАВЛЕНИЕ: Показываем контейнер кнопки только на мобильных */
+        display: block !important;
+    }
+
+    .menu-close-btn {
+        /* Применяем дизайн к ссылке внутри контейнера */
+        display: flex !important; 
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px 15px !important;
+        background-color: #666; 
+        color: white !important; 
+        font-weight: bold;
+        margin-bottom: 10px; 
+        transition: background-color 0.2s;
+    }
+
+    .menu-close-btn:hover {
+        background-color: #777;
+    }
+
+    /* Стилизация иконки внутри кнопки "Закрыть" */
+    .menu-close-btn i {
+        margin-right: 10px; 
+        font-size: 1.2em;
+    }
+
     /* ДОБАВЛЕНО/ОБНОВЛЕНО: Показываем гамбургер-иконку */
     .hamburger-icon {
         display: flex; 
@@ -226,12 +274,12 @@ header {
 
     /* ОБНОВЛЕНО: Настраиваем левый сайдбар как скользящее меню */
     .sidebar-left {
-        width: 80%; /* Занимает 80% ширины экрана */
-        height: calc(100vh - 70px); /* Полная высота экрана минус высота шапки */
-        position: fixed; /* Фиксируем на экране */
-        top: 70px; /* Начинается под шапкой (проверьте высоту вашей шапки) */
+        width: 80%; /* Занимает 80% ширины экрана */ 
+        height: calc(100vh - 70px); /* Полная высота экрана минус высота шапки */ 
+        position: fixed; /* Фиксируем на экране */ 
+        top: 70px; /* Начинается под шапкой (проверьте высоту вашей шапки) */ 
         left: 0;
-        padding: 0; /* Убираем padding, чтобы не мешал сдвигу */
+        padding: 0; /* Убираем padding, чтобы не мешал сдвигу */ 
         
         /* Скрываем меню за левым краем: НАЧАЛЬНОЕ СОСТОЯНИЕ */
         transform: translateX(-100%); 
@@ -240,7 +288,7 @@ header {
         transition: transform 0.3s ease-in-out;
         
         z-index: 900;
-        overflow-y: auto; /* Для скролла, если меню длинное */
+        overflow-y: auto; /* Для скролла, если меню длинное */ 
         box-shadow: 2px 0 5px rgba(0,0,0,0.5); 
         
         /* Настраиваем внутреннее содержимое меню */
@@ -249,7 +297,7 @@ header {
     
     /* ДОБАВЛЕНО: Открытое состояние меню (класс добавляется JS) */
     .sidebar-left.open {
-        transform: translateX(0); /* Сдвигаем в видимую область */
+        transform: translateX(0); /* Сдвигаем в видимую область */ 
     }
     
     /* СУЩЕСТВУЮЩИЕ СТИЛИ (ОБНОВЛЕНО) */
@@ -271,7 +319,7 @@ header {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Выровнять текст по левому краю */
+  align-items: flex-start; /* Выровнять текст по левому краю */ 
 }
 
 .video-wrapper {
@@ -279,24 +327,24 @@ header {
   max-width: 900px;
   aspect-ratio: 16 / 9;
   position: relative;
-  margin: 0 auto; /* Центрировать видео */
+  margin: 0 auto; /* Центрировать видео */ 
 }
 
  .recommendation {
-    flex-direction: column; /* Располагаем элементы вертикально */
-    align-items: center; /* Центрируем содержимое */
-    text-align: center; /* Текст выравниваем по центру */
+    flex-direction: column; /* Располагаем элементы вертикально */ 
+    align-items: center; /* Центрируем содержимое */ 
+    text-align: center; /* Текст выравниваем по центру */ 
   }
 
   .recommendation .video-thumbnail img {
-    width: 100%; /* Миниатюра растягивается на всю ширину */
-    max-width: 360px; /* Ограничиваем максимальную ширину */
-    height: auto; /* Высота пропорциональна ширине */
+    width: 100%; /* Миниатюра растягивается на всю ширину */ 
+    max-width: 360px; /* Ограничиваем максимальную ширину */ 
+    height: auto; /* Высота пропорциональна ширине */ 
   }
 
   .video-description {
-    margin-top: 10px; /* Добавляем отступ сверху для текста */
-    text-align: center; /* Выравниваем текст по центру */
+    margin-top: 10px; /* Добавляем отступ сверху для текста */ 
+    text-align: center; /* Выравниваем текст по центру */ 
   }
 
 }
@@ -306,7 +354,7 @@ footer {
   color: white;
   text-align: center;
   padding: 20px 10px;
-  margin-top: auto; /* Это поднимет футер внизу страницы */
+  margin-top: auto; /* Это поднимет футер внизу страницы */ 
 }
 
 footer .social-icons {
@@ -354,18 +402,18 @@ footer .social-icon.youtube:hover {
 /* header (Уже обновлен выше) */
 
 .logo-container {
-  width: 50px; /* Диаметр круга */
-  height: 50px; /* Диаметр круга */
-  overflow: hidden; /* Обрезает содержимое за пределами контейнера */
-  border-radius: 50%; /* Делает контейнер круглым */
+  width: 50px; /* Диаметр круга */ 
+  height: 50px; /* Диаметр круга */ 
+  overflow: hidden; /* Обрезает содержимое за пределами контейнера */ 
+  border-radius: 50%; /* Делает контейнер круглым */ 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .logo {
-  width: 100%; /* Изображение адаптируется по ширине контейнера */
-  height: auto; /* Сохраняет пропорции изображения */
+  width: 100%; /* Изображение адаптируется по ширине контейнера */ 
+  height: auto; /* Сохраняет пропорции изображения */ 
 }
 
 /* Для страницы Datenschutzerklärung */
@@ -382,18 +430,18 @@ footer .social-icon.youtube:hover {
 }
 
 .privacy-link {
-  color: #ffd700; /* Цвет ссылки */
-  text-decoration: none; /* Убирает подчеркивание */
+  color: #ffd700; /* Цвет ссылки */ 
+  text-decoration: none; /* Убирает подчеркивание */ 
 }
 
 .privacy-link:hover {
-  text-decoration: underline; /* Подчеркивание при наведении */
+  text-decoration: underline; /* Подчеркивание при наведении */ 
 }
 
 /* Стили для конвертера под стиль сайта */
 .converter-box {
   background: #fff;
-  padding: 25px; /* увеличил немного */
+  padding: 25px; /* увеличил немного */ 
   max-width: 500px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   border-radius: 12px;
@@ -408,7 +456,7 @@ footer .social-icon.youtube:hover {
   margin: 8px 0;
   border-radius: 8px;
   border: 1px solid #ccc;
-  box-sizing: border-box; /* важно, чтобы padding не ломал ширину */
+  box-sizing: border-box; /* важно, чтобы padding не ломал ширину */ 
 }
 .converter-box button {
   width: 100%;
@@ -443,7 +491,7 @@ footer .social-icon.youtube:hover {
   background: #fff;
   padding: 20px;
   /* margin: 40px auto; */
-  max-width: 500px;
+  max-width: 400px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   border-radius: 12px;
   /* text-align: center; */
